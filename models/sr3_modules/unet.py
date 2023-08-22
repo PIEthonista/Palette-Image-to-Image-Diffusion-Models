@@ -167,7 +167,8 @@ class Block(nn.Module):
     def __init__(self, dim, dim_out, groups=32, dropout=0):
         super().__init__()
         self.block = nn.Sequential(
-            nn.GroupNorm(groups, dim),
+            #nn.GroupNorm(groups, dim),
+            nn.BatchNorm2d(),
             Swish(),
             nn.Dropout(dropout) if dropout != 0 else nn.Identity(),
             nn.Conv2d(dim, dim_out, 3, padding=1)
@@ -201,7 +202,8 @@ class SelfAttention(nn.Module):
 
         self.n_head = n_head
 
-        self.norm = nn.GroupNorm(norm_groups, in_channel)
+        #self.norm = nn.GroupNorm(norm_groups, in_channel)
+        self.norm = nn.BatchNorm2d(in_channel)
         self.qkv = nn.Conv2d(in_channel, in_channel * 3, 1, bias=False)
         self.out = nn.Conv2d(in_channel, in_channel, 1)
 
