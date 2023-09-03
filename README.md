@@ -77,6 +77,8 @@ Results with 8 epochs and 330K iterations, and the several  **picked** samples i
 
 ## Usage
 ### Environment
+
+```conda create --name <env_name> python=3.7.6```
 ```python
 pip install -r requirements.txt
 ```

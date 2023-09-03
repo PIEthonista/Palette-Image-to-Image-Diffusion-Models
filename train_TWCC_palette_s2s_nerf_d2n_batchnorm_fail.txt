@@ -1,0 +1,9 @@
+run.py:28: UserWarning: You have chosen to use cudnn for accleration. torch.backends.cudnn.enabled=True
+  warnings.warn('You have chosen to use cudnn for accleration. torch.backends.cudnn.enabled=True')
+wandb: Currently logged in as: jielong-kew. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.15.9
+wandb: Run data is saved locally in /work/u5832291/yixian/palette_scene2scene_nerf/wandb/run-20230904_000124-c8eqzf5h
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run train_TWCC_palette_s2s_nerf_d2n_batchnorm
+wandb: ⭐️ View project at https://wandb.ai/jielong-kew/palette_scene2scene
+wandb: 🚀 View run at https://wandb.ai/jielong-kew/palette_scene2scene/runs/c8eqzf5h

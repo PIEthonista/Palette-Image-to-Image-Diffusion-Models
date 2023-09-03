@@ -1,0 +1,5 @@
+[default]
+entity = jielong-kew
+project = palette_scene2scene
+base_url = https://api.wandb.ai
+

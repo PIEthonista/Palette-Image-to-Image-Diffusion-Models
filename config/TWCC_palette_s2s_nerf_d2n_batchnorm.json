@@ -1,13 +1,13 @@
 {
     "wandb_project": "palette_scene2scene", // wandb project name
-    "name": "day2night_test", // experiments name
+    "name": "TWCC_palette_s2s_nerf_d2n_batchnorm", // experiments name
     "gpu_ids": [
         0
     ], // gpu ids list, default is single 0
     "seed": -1, // random seed, seed <0 represents randomization not used 
     "finetune_norm": false, // find the parameters to optimize
     "path": { //set every part file path
-        "base_dir": "/media/seven/HD_12/code/Palette/experiments", // base path for all log except resume_state
+        "base_dir": "/work/u5832291/yixian/palette_scene2scene_nerf/experiments", // base path for all log except resume_state
         "code": "code", // code backup
         "tb_logger": "tb_logger", // path of tensorboard logger
         "results": "results",
@@ -23,9 +23,9 @@
                     "Scene2SceneDataset"
                 ], // import Dataset() class / function(not recommend) from data.dataset.py (default is [data.dataset.py])
                 "args": { // arguments to initialize dataset
-                    "data_root_from": "/media/seven/HD_12/data/palette_data/test/day",
-                    "data_root_to": "/media/seven/HD_12/data/palette_data/test/night",
-                    "data_catalog": "/media/seven/HD_12/data/palette_data/test.txt",
+                    "data_root_from": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/train/day",
+                    "data_root_to": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/train/night",
+                    "data_catalog": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/train.txt",
                     "data_len": -1,
                     "image_size": [
                         256,
@@ -59,9 +59,9 @@
             "which_dataset": {
                 "name": "Scene2SceneDataset", // import Dataset() class / function(not recommend) from default file
                 "args": {
-                    "data_root_from": "/media/seven/HD_12/data/palette_data/test/day",
-                    "data_root_to": "/media/seven/HD_12/data/palette_data/test/night",
-                    "data_catalog": "/media/seven/HD_12/data/palette_data/test.txt",
+                    "data_root_from": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/test/day",
+                    "data_root_to": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/test/night",
+                    "data_catalog": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/test.txt",
                     "data_len": -1,
                     "image_size": [
                         256,
@@ -176,7 +176,7 @@
         "n_iter": 1e8, // max interations
         "val_epoch": 1e3, // valdation every specified number of epochs
         "save_checkpoint_epoch": 1e3,
-        "log_iter": 1, // 1e4 log every specified number of iterations
+        "log_iter": 1e4, // 1e4 log every specified number of iterations
         "tensorboard": true // tensorboardX enable
     },
     "debug": { // arguments in debug mode, which will replace arguments in train
