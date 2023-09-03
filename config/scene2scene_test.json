@@ -1,5 +1,7 @@
 {
-    "name": "colorization_test", // experiments name
+    "wandb_api_key": "6b305360cd440b1f7432d6f1ba4d81e0c0a60536", // wandb login creds
+    "wandb_project": "palette_scene2scene", // wandb project name
+    "name": "day2night_test", // experiments name
     "gpu_ids": [
         0
     ], // gpu ids list, default is single 0
@@ -19,18 +21,27 @@
             "which_dataset": { // import designated dataset using arguments 
                 "name": [
                     "data.dataset",
-                    "ColorizationDataset"
+                    "Scene2SceneDataset"
                 ], // import Dataset() class / function(not recommend) from data.dataset.py (default is [data.dataset.py])
                 "args": { // arguments to initialize dataset
-                    "data_root": "/media/seven/HD_12/data/palette_data/test",
-                    "data_flist": "/media/seven/HD_12/data/palette_data/test.txt",
-                    "data_len": -1
+                    "data_root_from": "/media/seven/HD_12/data/palette_data/test/day",
+                    "data_root_to": "/media/seven/HD_12/data/palette_data/test/night",
+                    "data_catalog": "/media/seven/HD_12/data/palette_data/test.txt",
+                    "data_len": -1,
+                    "image_size": [
+                        256,
+                        256
+                    ]
+                    // "image_size": [
+                    //     700,
+                    //     540
+                    // ]
                 }
             },
             "dataloader": {
                 "validation_split": 2, // percent or number 
                 "args": { // arguments to initialize train_dataloader
-                    "batch_size": 4, // batch size in each gpu
+                    "batch_size": 3, // batch size in each gpu
                     "num_workers": 4,
                     "shuffle": true,
                     "pin_memory": true,
@@ -47,10 +58,20 @@
         },
         "test": {
             "which_dataset": {
-                "name": "ColorizationDataset", // import Dataset() class / function(not recommend) from default file
+                "name": "Scene2SceneDataset", // import Dataset() class / function(not recommend) from default file
                 "args": {
-                    "data_root": "/media/seven/HD_12/data/palette_data/test",
-                    "data_flist": "/media/seven/HD_12/data/palette_data/test.txt"
+                    "data_root_from": "/media/seven/HD_12/data/palette_data/test/day",
+                    "data_root_to": "/media/seven/HD_12/data/palette_data/test/night",
+                    "data_catalog": "/media/seven/HD_12/data/palette_data/test.txt",
+                    "data_len": -1,
+                    "image_size": [
+                        256,
+                        256
+                    ]
+                    // "image_size": [
+                    //     700,
+                    //     540
+                    // ]
                 }
             },
             "dataloader": {
@@ -70,7 +91,7 @@
             ], // import Model() class / function(not recommend) from models.model.py (default is [models.model.py])
             "args": {
                 "sample_num": 8, // process of each image
-                "task": "colorization",
+                "task": "scene2scene",
                 "ema_scheduler": {
                     "ema_start": 1,
                     "ema_iter": 1,
@@ -111,7 +132,7 @@
                         "num_head_channels": 32,
                         "res_blocks": 2,
                         "dropout": 0.2,
-                        "image_size": 224
+                        "image_size": 256
                     },
                     "beta_schedule": {
                         "train": {
@@ -131,6 +152,19 @@
                 }
             }
         ],
+        "which_optimizers": [ // len(networks) == len(optimizers) == len(lr_schedulers), it will be deleted after initialization if not used.
+            {
+                "name": "Adam",
+                "args": {
+                    "lr": 5e-5,
+                    "weight_decay": 0
+                }
+            }
+        ],
+        "which_lr_schedulers": [ // {} represents None, it will be deleted after initialization.
+            {}
+            // { "name": "LinearLR", "args": { "start_factor": 0.2, "total_iters": 1e3 }}
+        ],
         "which_losses": [ // import designated list of losses without arguments
             "mse_loss" // import mse_loss() function/class from default file (default is [models/losses.py]), equivalent to { "name": "mse_loss", "args":{}}
         ],
@@ -141,15 +175,15 @@
     "train": { // arguments for basic training
         "n_epoch": 1e8, // max epochs, not limited now
         "n_iter": 1e8, // max interations
-        "val_epoch": 5, // valdation every specified number of epochs
-        "save_checkpoint_epoch": 10,
-        "log_iter": 1e4, // log every specified number of iterations
+        "val_epoch": 1e3, // valdation every specified number of epochs
+        "save_checkpoint_epoch": 1e3,
+        "log_iter": 1, // 1e4 log every specified number of iterations
         "tensorboard": true // tensorboardX enable
     },
     "debug": { // arguments in debug mode, which will replace arguments in train
         "val_epoch": 1,
         "save_checkpoint_epoch": 1,
-        "log_iter": 10,
+        "log_iter": 1, // 10
         "debug_split": 50 // percent or number, change the size of dataloder to debug_split.
     }
 }

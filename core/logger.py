@@ -3,6 +3,7 @@ from PIL import Image
 import importlib
 from datetime import datetime
 import logging
+import wandb
 import pandas as pd
 
 import core.util as Util
@@ -67,9 +68,8 @@ class VisualWriter():
             # Retrieve vizualization writer.
             succeeded = False
             
-            import wandb
             wandb.tensorboard.patch(root_logdir=log_dir)
-            self.wandb_run = wandb.init(
+            wandb.init(
                 project=opt['wandb_project'],
                 config=opt,
                 name=opt['name'],
@@ -125,7 +125,7 @@ class VisualWriter():
 
     def close(self):
         self.writer.close()
-        self.wandb_run.close()
+        # wandb.finish()
         print('Close the Tensorboard SummaryWriter.')
 
         

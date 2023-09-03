@@ -145,6 +145,7 @@ class UncroppingDataset(data.Dataset):
 class ColorizationDataset(data.Dataset):
     def __init__(self, data_root, data_flist, data_len=-1, image_size=[224, 224], loader=pil_loader):
         self.data_root = data_root
+        print("data_flist", data_flist)
         flist = make_dataset(data_flist)
         if data_len > 0:
             self.flist = flist[:int(data_len)]
@@ -161,13 +162,9 @@ class ColorizationDataset(data.Dataset):
     def __getitem__(self, index):
         ret = {}
         file_name = str(self.flist[index]).zfill(5) + '.png'
-        # file_name = str(self.flist[index]).zfill(5)
 
         img = self.tfs(self.loader('{}/{}/{}'.format(self.data_root, 'color', file_name)))
         cond_image = self.tfs(self.loader('{}/{}/{}'.format(self.data_root, 'gray', file_name)))
-        
-        # img = self.tfs(self.loader('{}/{}/{}'.format(self.data_root, 'night', file_name)))
-        # cond_image = self.tfs(self.loader('{}/{}/{}'.format(self.data_root, 'day', file_name)))
         
         ret['gt_image'] = img
         ret['cond_image'] = cond_image
@@ -178,3 +175,42 @@ class ColorizationDataset(data.Dataset):
         return len(self.flist)
 
 
+
+class Scene2SceneDataset(data.Dataset):
+    def __init__(self, data_root_from, data_root_to, data_catalog=None, data_len=-1, image_size=[700, 540], loader=pil_loader):
+        
+        with open(data_catalog, 'r') as file:
+            imgs = file.readlines()
+        imgs = sorted([f.strip() for f in imgs])
+        # assert len(make_dataset(data_root_from)) == len(make_dataset(data_root_to))
+        
+        if data_len > 0:
+            self.imgs = imgs[:int(data_len)]
+        else:
+            self.imgs = imgs
+        self.tfs = transforms.Compose([
+                transforms.Resize((image_size[0], image_size[1])),
+                transforms.ToTensor(),
+                transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5,0.5, 0.5])
+        ])
+        self.data_root_from = data_root_from
+        self.data_root_to = data_root_to
+        self.loader = loader
+        self.image_size = image_size
+
+    def __getitem__(self, index):
+        ret = {}
+        frame = self.imgs[index]
+        from_frame_path = os.path.join(self.data_root_from, frame)
+        to_frame_path = os.path.join(self.data_root_to, frame)
+        
+        from_img = self.tfs(self.loader(from_frame_path))
+        to_img = self.tfs(self.loader(to_frame_path))
+        
+        ret['gt_image'] = to_img
+        ret['cond_image'] = from_img
+        ret['path'] = frame
+        return ret
+
+    def __len__(self):
+        return len(self.imgs)

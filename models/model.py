@@ -24,7 +24,7 @@ class Palette(BaseModel):
         ''' networks, dataloder, optimizers, losses, etc. '''
         self.loss_fn = losses[0]
         self.netG = networks[0]
-        print("self.netG", self.netG)
+        print("Network Architecture:\n", self.netG)
         if ema_scheduler is not None:
             self.ema_scheduler = ema_scheduler
             self.netG_EMA = copy.deepcopy(self.netG)
@@ -60,13 +60,12 @@ class Palette(BaseModel):
     def set_input(self, data):
         ''' must use set_device in tensor '''
         self.cond_image = self.set_device(data.get('cond_image'))
-        print("self.cond_image", self.cond_image.shape)
+        # print("self.cond_image", self.cond_image.shape)
         self.gt_image = self.set_device(data.get('gt_image'))
         self.mask = self.set_device(data.get('mask'))
         self.mask_image = data.get('mask_image')
         self.path = data['path']
         self.batch_size = len(data['path'])
-        print("batch_size", self.batch_size)
     
     def get_current_visuals(self, phase='train'):
         dict = {

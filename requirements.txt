@@ -10,3 +10,4 @@ clean-fid
 
 pytorch-fid
 wandb
+tensorboard

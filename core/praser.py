@@ -32,7 +32,6 @@ def init_obj(opt, logger, *args, default_file_name='default file', given_module=
             module = given_module
         else:
             module = importlib.import_module(file_name)
-        
         attr = getattr(module, class_name)
         kwargs = opt.get('args', {})
         kwargs.update(modify_kwargs)
