@@ -22,7 +22,7 @@
                     "ColorizationDataset"
                 ], // import Dataset() class / function(not recommend) from data.dataset.py (default is [data.dataset.py])
                 "args": { // arguments to initialize dataset
-                    "data_root": "/media/seven/HD_12/code/Palette",
+                    "data_root": "/media/seven/HD_12/data/palette_data/test",
                     "data_flist": "/media/seven/HD_12/data/palette_data/test.txt",
                     "data_len": -1
                 }
@@ -49,7 +49,7 @@
             "which_dataset": {
                 "name": "ColorizationDataset", // import Dataset() class / function(not recommend) from default file
                 "args": {
-                    "data_root": "/media/seven/HD_12/code/Palette",
+                    "data_root": "/media/seven/HD_12/data/palette_data/test",
                     "data_flist": "/media/seven/HD_12/data/palette_data/test.txt"
                 }
             },

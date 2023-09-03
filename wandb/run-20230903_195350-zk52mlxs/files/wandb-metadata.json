@@ -1,0 +1,114 @@
+{
+    "os": "Linux-4.15.0-142-generic-x86_64-with-debian-stretch-sid",
+    "python": "3.7.6",
+    "heartbeatAt": "2023-09-03T11:53:51.994085",
+    "startedAt": "2023-09-03T11:53:50.812007",
+    "docker": null,
+    "cuda": "10.1.105",
+    "args": [
+        "-p",
+        "train",
+        "-c",
+        "/media/seven/HD_12/code/Palette/config/uncropping_test.json"
+    ],
+    "state": "running",
+    "program": "run.py",
+    "codePath": "run.py",
+    "git": {
+        "remote": "git@github.com:PIEthonista/Palette-Image-to-Image-Diffusion-Models",
+        "commit": "a91f4fb29437ee03be62d8cdeb3d702aa6ac7c34"
+    },
+    "email": "gohyixian456@gmail.com",
+    "root": "/media/seven/HD_12/code/Palette",
+    "host": "seven-System-Product-Name",
+    "username": "seven",
+    "executable": "/home/seven/anaconda3/envs/palette/bin/python",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 2892.1624166666666,
+        "min": 800.0,
+        "max": 4600.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2960.373,
+            "min": 800.0,
+            "max": 4600.0
+        },
+        {
+            "current": 2070.994,
+            "min": 800.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3286.044,
+            "min": 800.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1880.4,
+            "min": 800.0,
+            "max": 4600.0
+        },
+        {
+            "current": 1694.636,
+            "min": 800.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3579.603,
+            "min": 800.0,
+            "max": 4600.0
+        },
+        {
+            "current": 2495.495,
+            "min": 800.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3607.733,
+            "min": 800.0,
+            "max": 4600.0
+        },
+        {
+            "current": 2849.927,
+            "min": 800.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3103.249,
+            "min": 800.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3566.934,
+            "min": 800.0,
+            "max": 4600.0
+        },
+        {
+            "current": 3610.561,
+            "min": 800.0,
+            "max": 4600.0
+        }
+    ],
+    "disk": {
+        "total": 392.8146667480469,
+        "used": 340.5729675292969
+    },
+    "gpu": "NVIDIA TITAN Xp",
+    "gpu_count": 2,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA TITAN Xp",
+            "memory_total": 12884901888
+        },
+        {
+            "name": "NVIDIA TITAN Xp",
+            "memory_total": 12884901888
+        }
+    ],
+    "memory": {
+        "total": 47.09001541137695
+    }
+}

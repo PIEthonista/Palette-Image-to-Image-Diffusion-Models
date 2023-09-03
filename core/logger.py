@@ -66,6 +66,16 @@ class VisualWriter():
 
             # Retrieve vizualization writer.
             succeeded = False
+            
+            import wandb
+            wandb.tensorboard.patch(root_logdir=log_dir)
+            self.wandb_run = wandb.init(
+                project=opt['wandb_project'],
+                config=opt,
+                name=opt['name'],
+                sync_tensorboard=True,
+            )
+            
             for module in ["tensorboardX", "torch.utils.tensorboard"]:
                 try:
                     self.writer = importlib.import_module(module).SummaryWriter(log_dir)
@@ -115,6 +125,7 @@ class VisualWriter():
 
     def close(self):
         self.writer.close()
+        self.wandb_run.close()
         print('Close the Tensorboard SummaryWriter.')
 
         

@@ -243,11 +243,15 @@ class AttentionBlock(nn.Module):
 
     def _forward(self, x):
         b, c, *spatial = x.shape
-        x = x.reshape(b, c, -1)
-        qkv = self.qkv(self.norm(x))
+        # x = x.reshape(b, c, -1)
+        # qkv = self.qkv(self.norm(x))
+        print("x_shape", x.reshape(b, c, -1).shape)
+        qkv = self.qkv(self.norm(x).reshape(b, c, -1))  # ~!yx: moved reshaping to after batchnorm
         h = self.attention(qkv)
         h = self.proj_out(h)
-        return (x + h).reshape(b, c, *spatial)
+        # return (x + h).reshape(b, c, *spatial)
+        return (x.reshape(b, c, -1) + h).reshape(b, c, *spatial)  # ~!yx
+        
 
 
 class QKVAttentionLegacy(nn.Module):
@@ -536,11 +540,15 @@ class UNet(nn.Module):
         h = x.type(torch.float32)
         for module in self.input_blocks:
             h = module(h, emb)
+            print("DOWN h.shape", h.shape)
             hs.append(h)
+        print("MID1 h.shape", h.shape)
         h = self.middle_block(h, emb)
+        print("MID2 h.shape", h.shape)
         for module in self.output_blocks:
             h = torch.cat([h, hs.pop()], dim=1)
             h = module(h, emb)
+            print("UP h.shape", h.shape)
         h = h.type(x.dtype)
         return self.out(h)
 
