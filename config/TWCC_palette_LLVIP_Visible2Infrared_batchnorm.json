@@ -1,6 +1,6 @@
 {
     "wandb_project": "palette_scene2scene", // wandb project name
-    "name": "TWCC_palette_s2s_nerf_d2n_batchnorm", // experiments name
+    "name": "TWCC_palette_LLVIP_Visible2Infrared_batchnorm", // experiments name
     "gpu_ids": [
         0
     ], // gpu ids list, default is single 0
@@ -20,12 +20,11 @@
             "which_dataset": { // import designated dataset using arguments 
                 "name": [
                     "data.dataset",
-                    "Scene2SceneDataset"
+                    "LLVIP_Visible2Infrared_Dataset"
                 ], // import Dataset() class / function(not recommend) from data.dataset.py (default is [data.dataset.py])
                 "args": { // arguments to initialize dataset
-                    "data_root_from": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/train/day",
-                    "data_root_to": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/train/night",
-                    "data_catalog": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/train.txt",
+                    "data_root_from": "/work/u5832291/datasets/LLVIP/infrared/train",
+                    "data_root_to": "/work/u5832291/datasets/LLVIP/visible/train",
                     "data_len": -1,
                     "image_size": [
                         256,
@@ -57,11 +56,10 @@
         },
         "test": {
             "which_dataset": {
-                "name": "Scene2SceneDataset", // import Dataset() class / function(not recommend) from default file
-                "args": {
-                    "data_root_from": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/test/day",
-                    "data_root_to": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/test/night",
-                    "data_catalog": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/test.txt",
+                "name": "LLVIP_Visible2Infrared_Dataset", // import Dataset() class / function(not recommend) from default file
+                "args": { // arguments to initialize dataset
+                    "data_root_from": "/work/u5832291/datasets/LLVIP/infrared/test",
+                    "data_root_to": "/work/u5832291/datasets/LLVIP/visible/test",
                     "data_len": -1,
                     "image_size": [
                         256,
@@ -90,7 +88,7 @@
             ], // import Model() class / function(not recommend) from models.model.py (default is [models.model.py])
             "args": {
                 "sample_num": 8, // process of each image
-                "task": "scene2scene",
+                "task": "visible2infrared",
                 "ema_scheduler": {
                     "ema_start": 1,
                     "ema_iter": 1,
@@ -174,8 +172,8 @@
     "train": { // arguments for basic training
         "n_epoch": 1e8, // max epochs, not limited now
         "n_iter": 1e8, // max interations
-        "val_epoch": 1e3, // valdation every specified number of epochs
-        "save_checkpoint_epoch": 1e3,
+        "val_epoch": 1e2, // valdation every specified number of epochs
+        "save_checkpoint_epoch": 1e2,
         "log_iter": 1e4, // 1e4 log every specified number of iterations
         "tensorboard": true // tensorboardX enable
     },

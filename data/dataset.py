@@ -214,3 +214,43 @@ class Scene2SceneDataset(data.Dataset):
 
     def __len__(self):
         return len(self.imgs)
+
+
+
+class LLVIP_Visible2Infrared_Dataset(data.Dataset):
+    def __init__(self, data_root_from, data_root_to, data_len=-1, image_size=[700, 540], loader=pil_loader):
+        
+        imgs = sorted(os.listdir(data_root_from))
+        
+        assert imgs == sorted(os.listdir(data_root_to))
+        
+        if data_len > 0:
+            self.imgs = imgs[:int(data_len)]
+        else:
+            self.imgs = imgs
+        self.tfs = transforms.Compose([
+                transforms.Resize((image_size[0], image_size[1])),
+                transforms.ToTensor(),
+                transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5,0.5, 0.5])
+        ])
+        self.data_root_from = data_root_from
+        self.data_root_to = data_root_to
+        self.loader = loader
+        self.image_size = image_size
+
+    def __getitem__(self, index):
+        ret = {}
+        frame = self.imgs[index]
+        from_frame_path = os.path.join(self.data_root_from, frame)
+        to_frame_path = os.path.join(self.data_root_to, frame)
+        
+        from_img = self.tfs(self.loader(from_frame_path))
+        to_img = self.tfs(self.loader(to_frame_path))
+        
+        ret['gt_image'] = to_img
+        ret['cond_image'] = from_img
+        ret['path'] = frame
+        return ret
+
+    def __len__(self):
+        return len(self.imgs)
