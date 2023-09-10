@@ -7,7 +7,7 @@
     "seed": -1, // random seed, seed <0 represents randomization not used 
     "finetune_norm": false, // find the parameters to optimize
     "path": { //set every part file path
-        "base_dir": "/work/u5832291/yixian/palette_scene2scene_nerf/experiments", // base path for all log except resume_state
+        "base_dir": "/work/u5832291/yixian/palette_scene2scene/experiments", // base path for all log except resume_state
         "code": "code", // code backup
         "tb_logger": "tb_logger", // path of tensorboard logger
         "results": "results",
@@ -62,9 +62,9 @@
                     // "data_root_from": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/test/day",
                     // "data_root_to": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/test/night",
                     // "data_catalog": "/work/u5832291/Palette-Image-to-Image-Diffusion-Models/datasets/nerf/test.txt",
-                    "data_root_from": "/work/u5832291/yixian/palette_scene2scene_nerf/datasets/nerf/train_50/day",
-                    "data_root_to": "/work/u5832291/yixian/palette_scene2scene_nerf/datasets/nerf/train_50/night",
-                    "data_catalog": "/work/u5832291/yixian/palette_scene2scene_nerf/datasets/nerf/train_50.txt",
+                    "data_root_from": "/work/u5832291/yixian/palette_scene2scene/datasets/nerf_train_50/day",
+                    "data_root_to": "/work/u5832291/yixian/palette_scene2scene/datasets/nerf_train_50/night",
+                    "data_catalog": "/work/u5832291/yixian/palette_scene2scene/datasets/nerf_train_50/nerf_train_50.txt",
                     "data_len": -1,
                     "image_size": [
                         256,

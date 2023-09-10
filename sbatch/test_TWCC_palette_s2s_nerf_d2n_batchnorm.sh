@@ -9,5 +9,5 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=gohyixian456@gmail.com
 
-# 518515
+# 518565
 srun python run.py -p test -c /work/u5832291/yixian/palette_scene2scene/config/inference/inf_TWCC_palette_s2s_nerf_d2n_batchnorm.json
