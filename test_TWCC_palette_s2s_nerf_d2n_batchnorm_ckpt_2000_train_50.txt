@@ -1,0 +1,13 @@
+OSError: [Errno 122] Disk quota exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "run.py", line 76, in <module>
+    opt = Praser.parse(args)
+  File "/work/u5832291/yixian/palette_scene2scene_nerf/core/praser.py", line 130, in parse
+    write_json(opt, '{}/config.json'.format(experiments_root))
+  File "/work/u5832291/yixian/palette_scene2scene_nerf/core/praser.py", line 66, in write_json
+    json.dump(content, handle, indent=4, sort_keys=False)
+OSError: [Errno 122] Disk quota exceeded
+srun: error: gn0706: task 0: Exited with exit code 1
