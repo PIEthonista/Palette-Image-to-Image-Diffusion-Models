@@ -1,0 +1,6 @@
+#! /bin/bash
+
+ssh-add ~/.ssh/id_ed25519_yx
+eval "$(conda shell.bash hook)"
+conda activate palette
+wandb login --relogin 6b305360cd440b1f7432d6f1ba4d81e0c0a60536
