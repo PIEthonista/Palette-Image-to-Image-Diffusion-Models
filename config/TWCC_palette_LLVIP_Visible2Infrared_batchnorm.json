@@ -23,8 +23,8 @@
                     "LLVIP_Visible2Infrared_Dataset"
                 ], // import Dataset() class / function(not recommend) from data.dataset.py (default is [data.dataset.py])
                 "args": { // arguments to initialize dataset
-                    "data_root_from": "/work/u5832291/datasets/LLVIP/infrared/train",
-                    "data_root_to": "/work/u5832291/datasets/LLVIP/visible/train",
+                    "data_root_from": "/work/u5832291/datasets/LLVIP/visible/train",
+                    "data_root_to": "/work/u5832291/datasets/LLVIP/infrared/train",
                     "data_len": -1,
                     "image_size": [
                         256,
@@ -58,8 +58,8 @@
             "which_dataset": {
                 "name": "LLVIP_Visible2Infrared_Dataset", // import Dataset() class / function(not recommend) from default file
                 "args": { // arguments to initialize dataset
-                    "data_root_from": "/work/u5832291/datasets/LLVIP/infrared/test",
-                    "data_root_to": "/work/u5832291/datasets/LLVIP/visible/test",
+                    "data_root_from": "/work/u5832291/datasets/LLVIP/visible/test",
+                    "data_root_to": "/work/u5832291/datasets/LLVIP/infrared/test",
                     "data_len": -1,
                     "image_size": [
                         256,
