@@ -1,6 +1,6 @@
 {
     "wandb_project": "palette_scene2scene", // wandb project name
-    "name": "TWCC_palette_s2s_nerf_d2n_batchnorm", // experiments name
+    "name": "TWCC_palette_s2s_nerf_d2n_batchnorm_ckpt100", // experiments name
     "gpu_ids": [
         0
     ], // gpu ids list, default is single 0
@@ -174,8 +174,8 @@
     "train": { // arguments for basic training
         "n_epoch": 1e8, // max epochs, not limited now
         "n_iter": 1e8, // max interations
-        "val_epoch": 1e3, // valdation every specified number of epochs
-        "save_checkpoint_epoch": 1e3,  // LLVIP: 12025, 3463    NERF: 1450, 76
+        "val_epoch": 1e2, // valdation every specified number of epochs
+        "save_checkpoint_epoch": 1e2,  // LLVIP: 12025, 3463    NERF: 1450, 76
         "log_iter": 1e4, // 1e4 log every specified number of iterations
         "tensorboard": true // tensorboardX enable
     },

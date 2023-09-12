@@ -1,5 +1,6 @@
 #! /bin/bash
 
+eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519_yx
 eval "$(conda shell.bash hook)"
 conda activate palette
