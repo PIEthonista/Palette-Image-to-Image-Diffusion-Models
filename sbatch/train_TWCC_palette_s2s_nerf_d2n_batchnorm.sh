@@ -11,4 +11,4 @@
 
 # 516621
 # 519164
-srun python run.py -p train -c /work/u5832291/yixian/palette_scene2scene/config/TWCC_palette_s2s_nerf_d2n_batchnorm.json
+srun python run.py -p train -c /work/u5832291/yixian/palette_scene2scene_rec/config/TWCC_palette_s2s_nerf_d2n_batchnorm.json

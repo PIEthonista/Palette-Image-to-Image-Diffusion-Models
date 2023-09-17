@@ -9,5 +9,5 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=gohyixian456@gmail.com
 
-# 519506
-srun python run.py -p train -c /work/u5832291/yixian/palette_scene2scene/config/TWCC_palette_LLVIP_Infrared2Visible_batchnorm.json
+# 520543
+srun python run.py -p train -c /work/u5832291/yixian/palette_scene2scene_rec/config/TWCC_palette_LLVIP_Infrared2Visible_batchnorm.json
