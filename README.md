@@ -1,5 +1,11 @@
 # Alex: GroupNorm() is replaced by BatchNorm2d() for preventing color-shift issue, 2023/08/22 
 
+# TODO:
+
+In this repo, create a folder named "pytorch_fid", clone this repo <a href='https://github.com/mseitzer/pytorch-fid.git'>https://github.com/mseitzer/pytorch-fid.git</a> into the "pytorch_fid" folder. Goto pytorch_fid/src/pytorch_fid/fir_score.py, comment out line 52 (from pytorch_fid.inception import InceptionV3), insert this line after that: 
+<code>from .inception import InceptionV3</code>
+
+
 
 # Palette: Image-to-Image Diffusion Models
 
