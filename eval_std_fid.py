@@ -19,7 +19,7 @@ from models.metric import inception_score
 # sys.path.insert(1, '/content/pytorch-fid/src/pytorch_fid/')
 # from fid_score import calculate_fid_given_paths
 
-from pytorch_fid.fid_score import calculate_fid_given_paths
+from pytorch_fid.src.pytorch_fid.fid_score import calculate_fid_given_paths
 def fid_function(path=[], device='cuda', batch_size=50, num_workers=4, dims=2048):
     fid_value = calculate_fid_given_paths(path,
                                           batch_size,
@@ -45,3 +45,5 @@ if __name__ == '__main__':
     print('      FID: {}'.format(fid_score))
     print('IS (mean): {}'.format(is_mean))
     print(' IS (std): {}'.format(is_std))
+    
+# results will be shown in slurm-JOBID.out file
